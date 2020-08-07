@@ -1,0 +1,17 @@
+= clipboard.kak
+Parasrah <git@parasrah.com>
+
+A kakoune plugin to integrate with the system clipboard on linux, in a similar way to `vim`.
+It works by designating a specific register as the `clipboard_register` (which is `p` by default).
+All writes to this register will also propagate to the system clipboard, and every time you start or focus kakoune, the system clipboard will be propagated to this register.
+In other words, you should be able to treat the `clipboard_register` as if it is your system clipboard (similar to `+` in vim)
+
+== Requirements
+
+This requires the `RegisterModified` hook introduced around release `2020-08-04`, and a client that supports the `FocusIn` hook.
+
+== Configuration
+
+Currently, `clipboard_register` is unused, and the functionality is bound to the `p` register. There are plans to make this configurable in the future.
+
+To change the commands to set/get the system clipboard, the options `set_clipboard_cmd` and `get_clipboard_cmd` are available, and default to using `xsel`.
