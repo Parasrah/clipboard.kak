@@ -16,7 +16,9 @@ hook global RegisterModified p %{ nop %sh{
 } }
 
 define-command -hidden propagate-clipboard -docstring 'Propagate clipboard contents to clipboard register' %{
-    set-register p %sh{ $kak_opt_get_clipboard_cmd }
+    evaluate-commands -no-hooks %{
+        set-register p %sh{ $kak_opt_get_clipboard_cmd }
+    }
 }
 
 hook global FocusIn .* propagate-clipboard
